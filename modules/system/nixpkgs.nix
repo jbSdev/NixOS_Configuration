@@ -7,6 +7,7 @@
 				"nvidia-settings"
                 "steam"
                 "steam-unwrapped"
+                "winbox"
 			];
 
 		nixpkgs.config.permittedInsecurePackages = [

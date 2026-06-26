@@ -24,6 +24,7 @@
         inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
 
         libreoffice-fresh           # LibreOffice Suite
+        winbox4                     # MicroTik Router Setup
 	];
 
 	programs.zsh = {
