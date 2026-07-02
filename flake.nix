@@ -20,6 +20,18 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         sops-nix.url = "github:mic92/sops-nix";
+        nixos-neovim = {
+            url = "github:jbSdev/NixOS_neovim/Nix-managed";     # My own Neovim config
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        nur = {
+            url = "github:nix-community/NUR";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        firefox-addons = {
+            url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 	};
 
 	outputs = inputs: inputs.flake-parts.lib.mkFlake 

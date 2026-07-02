@@ -1,0 +1,8 @@
+keys:
+  - &jb age17udhy02j3ygmqalvuhx3yrz8jlpgk0l9yf7hhnm0fuvwe8plrghq2t6uae
+
+creation_rules:
+  - path_reges: secrets\.yaml$
+    key_groups:
+      - age:
+          - *jb

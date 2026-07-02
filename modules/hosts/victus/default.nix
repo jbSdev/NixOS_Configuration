@@ -11,9 +11,12 @@
 			{
 				home-manager.useGlobalPkgs = true;
 				home-manager.useUserPackages = true;
-				home-manager.extraSpecialArgs = { inherit inputs; };
 				home-manager.users.jb = import ../../../home/jb/default.nix;
                 home-manager.backupFileExtension = "hp-backup";
+                home-manager.extraSpecialArgs = {
+                    inherit inputs;
+                    firefox-addons = inputs.firefox-addons.packages.x86_64-linux;
+                };
 			}
 		];
 	};

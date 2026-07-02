@@ -1,13 +1,18 @@
 { self, inputs, ... }: {
 
 	flake.nixosModules.nixNixpkgs = { lib, ... }: {
+
+        nixpkgs.overlays = [ inputs.nur.overlays.default ];
+
 		nixpkgs.config.allowUnfreePredicate = pkg: 
 			builtins.elem (lib.getName pkg) [
 				"nvidia-x11"
 				"nvidia-settings"
-                "steam"
-                "steam-unwrapped"
-                "winbox"
+				"steam"
+				"steam-unwrapped"
+				"winbox"
+				"obsidian"
+				"claude-code"
 			];
 
 		nixpkgs.config.permittedInsecurePackages = [

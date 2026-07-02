@@ -27,6 +27,10 @@
         };
         
         hardware.steam-hardware.enable = true;
+
+        # PS5 Controller Support
+        hardware.uinput.enable = true;
+        services.udev.packages = with pkgs; [ game-devices-udev-rules ];
     
     };
 

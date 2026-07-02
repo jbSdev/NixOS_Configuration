@@ -1,6 +1,8 @@
 { self, inputs, ... }: {
 
-	flake.nixosModules.nixSecurity = { pkgs, ... }: {
+	flake.nixosModules.nixSecurity = { config, pkgs, ... }: {
+
+        imports = [ inputs.sops-nix.nixosModules.sops ];
 	
 		# SSH
 		services.openssh.enable = true;
@@ -20,6 +22,18 @@
 			pinentryPackage = pkgs.pinentry-gtk2;
 			enableSSHSupport = true;
 		};
+
+        sops = {
+            defaultSopsFile = ../../../secrets.yaml;
+            defaultSopsFormat = "yaml";
+            age.keyFile = "/home/jb/.config/sops/age/keys.txt";
+
+        };
+
+        environment.systemPackages = with pkgs; [
+            sops
+            age
+        ];
 
 	};
 

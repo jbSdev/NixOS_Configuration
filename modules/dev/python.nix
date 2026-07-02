@@ -11,8 +11,8 @@
                 ruff
                 black
                 mypy
-                python-lsp-server
-                numpy
+                python3Packages.python-lsp-server
+                python3Packages.numpy
             ];
             shellHook = ''
                 echo "Python dev shell"
