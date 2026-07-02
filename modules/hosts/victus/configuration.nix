@@ -15,7 +15,7 @@
 			self.nixosModules.nixDisplayManager
             self.nixosModules.nixGaming
             self.nixosModules.nixBrightness
-            # self.nixosModules.nixSops
+            self.nixosModules.victusInput
 		];
 
 		modules.hyprland.enable = true;
