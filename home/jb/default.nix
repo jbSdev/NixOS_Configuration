@@ -46,7 +46,7 @@
 			rebuild = "sudo nixos-rebuild switch --flake ~/nixConfig/.#victus";
 			rebuild-nvim = "cd ~/nixConfig && \
 					sudo nix flake lock --update-input nixos-neovim && \
-					sudo nixos-rebuild switch --flake ~/nixConfig/#.victus && \
+					sudo nixos-rebuild switch --flake ~/nixConfig/.#victus && \
 					cd -";
 			cat = "bat --paging=never $@";
 			mountusb  = "sudo mount /dev/sda1 /run/mount && cd /run/mount";
@@ -135,11 +135,6 @@
 				User = "jb";
 			};
 		};
-	};
-
-	xdg.configFile."nvim" = {
-		source = inputs.nvim-config.outPath;
-		recursive = true;
 	};
 
 	programs.bluetuith.enable = true;

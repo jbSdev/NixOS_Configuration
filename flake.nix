@@ -11,10 +11,6 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
-		nvim-config = {
-			url = "github:jbSdev/NixOS_neovim";
-			flake = false;
-		};
         rose-pine-hyprcursor = {
             url = "github:ndom91/rose-pine-hyprcursor";
             inputs.nixpkgs.follows = "nixpkgs";
