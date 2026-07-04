@@ -1,16 +1,17 @@
 * {
     color: #ffffff;
-    font-size: 14px;
+    font-size: 12px;
     font-family: "Terminus (TTF)";
+    min-height: 0;;
 }
 
 window#waybar {
-    /* border: 1px red solid; */
+    /* border: 1px yellow solid; */
 }
 
 window#waybar , window#waybar * {
     background-color: rgba(0, 0, 0, 0);
-    min-height: 0;
+    /* min-height: 0; */
 }
 
 .modules-left   > widget > *,
@@ -20,11 +21,59 @@ window#waybar , window#waybar * {
     /* border: 1px red solid; */
 }
 
+#workspaces {
+    padding: 2px 10px;
+    /* border: 1px green solid; */
+}
+
 #workspaces button {
     border-radius: 0px;
     padding: 0 4px;
+    /* border: 1px red solid; */
+}
+
+button:hover {
+    background: transparent;
+    box-shadow: none;;
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    background-image: none;
+    box-shadow: none;
+    border: none;
+    padding: 0 4px;
+    margin: 0;
+    transition: background-color 0.3s;
 }
 
 #workspaces button.active {
-    box-shadow: inset 0 -2px #00ff00;
+    box-shadow: inset 0 -2px #222436;
+}
+
+#workspaces button.active:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 -2px #222436;
+}
+
+.modules-center > widget > #player {
+    margin-top: 4px;
+}
+
+#mpris {
+    padding: 0;
+    min-height: 17px;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    /* border: 1px pink solid; */
+}
+
+#custom-progress {
+    font-size: 6px;
+    margin-top: -1px;
+    letter-spacing: -1px;
+    color: #ffffff;
+    opacity: 0.6;
+    /* border: 1px green solid; */
 }

@@ -2,6 +2,7 @@
 let
     wallpaper = ../../assets/wallpaper.jpg;
     # waybarcss = ../../assets/waybar.css;
+    barHeight = 30;
 in
 {
 
@@ -42,8 +43,8 @@ in
 
 			general = {
 				gaps_in = 5;
-				gaps_out = 10;
-				border_size = 2;
+				gaps_out = "2,10,2,10";
+				border_size = 1;
 				layout = "dwindle";
 			};
 
@@ -60,7 +61,7 @@ in
             topBar = {
                 layer = "top";
                 position = "top";
-                height = 25;
+                height = barHeight;
                 reload_on_style_change = true;
                 modules-left   = [ "hyprland/workspaces" ];
                 modules-center = [ "clock" ];
@@ -79,16 +80,22 @@ in
             botBar = {
                 layer = "bottom";
                 position = "bottom";
-                height = 25;
+                height = barHeight;
                 reload_on_style_change = true;
-                modules-left   = [ "custom/publicip" ];
-                modules-center = [ "mpris" ];
+                modules-left   = [ "custom/customip" ];
+                # modules-center = [ "mpris" ];
+                modules-center = [ "group/player" ];
                 modules-right  = [ "hyprland/window" ];
                 
-                "custom/publicip" = {
+                "custom/customip" = {
                     format = "{}";
-                    tooltip = false;
-                    exec = pkgs.writeShellScript "publicip" ''curl -s ifconfig.me'';
+                    tooltip = true;
+                    return-type = "json";
+                    exec = pkgs.writeShellScript "customip" ''
+                        public_ip=$(curl -s ifconfig.me)
+                        local_ip=$(hostname -I)
+                        printf '{"text":"%s", "tooltip":"%s"}\n' "$public_ip" "$local_ip"
+                    '';
                     interval = 60;
                 };
 
@@ -98,20 +105,28 @@ in
                 };
 
                 "mpris" = {
-                    format = "{status_icon} {artist} - {title}";
-                    # format-paused = "{statusIcon} {artist} - {title}";
+                    format = "{artist} - {title}";
+                    format-paused = "{status_icon} {artist} - {title}";
                     format-firefox = "{status_icon} {title}";
                     tooltip = false;
-                    player-icons = {
-                        default = "";
-                        mpv = " ";
-                    };
                     status-icons = {
-                        paused = "";
+                        paused = "󰏤";
                         playing = "";
                         stopped = "";
                     };
                     interval = 2;
+                };
+
+                "custom/progress" = {
+                    exec = "${config.home.homeDirectory}/nixConfig/assets/mpris-progress.sh";
+                    interval = 1;
+                    format = "{}";
+                    tooltip = false;
+                };
+
+                "group/player" = {
+                    orientation = "vertical";
+                    modules = [ "mpris" "custom/progress" ];
                 };
             };
         };
