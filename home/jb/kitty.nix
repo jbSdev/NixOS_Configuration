@@ -4,7 +4,7 @@
     programs.kitty = {
         enable = true;
         font = {
-            name = "Dina";
+            name = "Terminus (TTF)";
             size = 12;
         };
     };

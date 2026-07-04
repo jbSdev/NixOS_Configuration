@@ -13,18 +13,21 @@
 
                 noto-fonts
                 noto-fonts-cjk-sans
-                noto-fonts-emoji
+                noto-fonts-color-emoji
 
                 jetbrains-mono
                 fira-code
                 fira-code-symbols
 
-                monospace
+                terminus_font_ttf
             ];
 
             fontconfig = {
+                allowBitmaps = true;
+                useEmbeddedBitmaps = true;
                 defaultFonts = {
-                    monospace = [ "JetBrainsMono Nerd Font" "JetBrainsMono" ];
+                    monospace = [ "JetBrainsMono Nerd Font" "JetBrains Mono" ];
+                    # monospace = [ "Dina" ];
                     sansSerif = [ "Noto Sans" ];
                     serif     = [ "Noto Serif" ];
                     emoji     = [ "Noto Color Emoji" ];

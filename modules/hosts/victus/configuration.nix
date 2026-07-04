@@ -16,6 +16,7 @@
             self.nixosModules.nixGaming
             self.nixosModules.nixBrightness
             self.nixosModules.victusInput
+            self.nixosModules.nixFonts
 		];
 
 		modules.hyprland.enable = true;
