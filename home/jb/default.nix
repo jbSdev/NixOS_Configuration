@@ -1,8 +1,8 @@
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, ... }:
 {
 
 	imports = [ ./hyprland.nix ./binds.nix ./gaming.nix ./music.nix ./neovim.nix 
-		./git.nix ./pass.nix ./sops.nix ./firefox.nix
+		./git.nix ./pass.nix ./sops.nix ./firefox.nix ./kitty.nix
 	];
 
 	modules.neovim.enable = true;
@@ -14,7 +14,7 @@
 	programs.home-manager.enable = true;
 
 	home.packages = with pkgs; [
-		kitty
+            kitty
 			eza
 			bat
 			btop
