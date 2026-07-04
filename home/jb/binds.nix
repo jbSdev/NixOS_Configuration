@@ -40,6 +40,16 @@
             "SUPER, k,     movefocus, u"
             "SUPER, j,     movefocus, d"
 
+            "SUPER SHIFT, left,  movewindow, l"
+            "SUPER SHIFT, right, movewindow, r"
+            "SUPER SHIFT, up,    movewindow, u"
+            "SUPER SHIFT, down,  movewindow, d"
+
+            "SUPER SHIFT, h,     movewindow, l"
+            "SUPER SHIFT, l,     movewindow, r"
+            "SUPER SHIFT, k,     movewindow, u"
+            "SUPER SHIFT, j,     movewindow, d"
+
             "SUPER, F, fullscreen"
             "SUPER, R, submap, resize"
 
@@ -52,14 +62,22 @@
             ", XF86AudioMute,         exec, pactl set-sink-mute   @DEFAULT_SINK@ toggle"
 
         ];
+        settings.bindm = [
+            "SUPER, mouse:272, movewindow"      # Move floating window on SUPER + l-click
+            "SUPER, mouse:273, resizewindow"    # Resize floating window on super + r-click
+        ];
         submaps = {
-            resize.settings.bind = [
-                ", right,  resizeactive,  20 0"
-                ", left,   resizeactive, -20 0"
-                ", up,     resizeactive,  0 -20"
-                ", down,   resizeactive,  0  20"
-                ", escape, submap,        reset"
-            ];
+            resize.settings = {
+                binde = [
+                    ", right,  resizeactive,  20 0"
+                    ", left,   resizeactive, -20 0"
+                    ", up,     resizeactive,  0 -20"
+                    ", down,   resizeactive,  0  20"
+                ];
+                bind = [
+                    ", escape, submap,        reset"
+                ];
+            };
         };
     };
 
