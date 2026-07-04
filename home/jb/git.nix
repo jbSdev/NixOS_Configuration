@@ -43,9 +43,10 @@
                 > "$HOME/.config/git/identity"
         fi
 	'';
-		# $DRY_RUN_CMD sh -c 'printf "[user]\n\tname = %s\n\temail = %s\n" \
-		# 	"$(cat ${config.sops.secrets."git/name".path})" \
-		# 	"$(cat ${config.sops.secrets."git/email".path})" \
-		# 	> /run/user/1000/git-identity'
+
+    programs.lazygit = {
+        enable = true;
+        enableZshIntegration = true;
+    };
 
 }

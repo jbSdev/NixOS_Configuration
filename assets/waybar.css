@@ -1,0 +1,13 @@
+* {
+    border: none;
+    color: #ffffff;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#clock {
+    background: #ff0000;
+    color: #00ff00;
+}
