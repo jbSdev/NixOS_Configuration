@@ -1,6 +1,7 @@
-{ inputs, pkgs, ... }:
+{ pkgs, config, ... }:
 let
     wallpaper = ../../assets/wallpaper.jpg;
+    # waybarcss = ../../assets/waybar.css;
 in
 {
 
@@ -60,9 +61,10 @@ in
                 layer = "top";
                 position = "top";
                 height = 25;
-                modules-left = [ "hyprland/workspaces" ];
+                reload_on_style_change = true;
+                modules-left   = [ "hyprland/workspaces" ];
                 modules-center = [ "clock" ];
-                modules-right = [ "pulseaudio" "battery" ];
+                modules-right  = [ "pulseaudio" "battery" ];
 
                 "hyprland/workspaces" = {
                     disable-scroll = "true";
@@ -78,46 +80,68 @@ in
                 layer = "bottom";
                 position = "bottom";
                 height = 25;
-                modules-left = [ "custom/publicip" ];
-                modules-center = [];
-                modules-right = [ "hyprland/window" ];
-
-                "network" = {
-                    interface = "wlp4s0";
-                    format = "{ipaddr}";
-                    format-wifi = "{ipaddr} ({signalStrength}%)";
-                    format-ethernet = "{ipaddr}";
-                    format-disconnected = "DISC";
-                    # tooltip-format = "{ifname} via {gwaddr}";
-                    # tooltip-format-wifi = "{essid} ({signalStrength}%)";
-                    # tooltip-format-ethernet = "{ipaddr}";
-                    # tooltip-format-disconnected = "Disconnected";
-                    max-length = 50;
-                };
+                reload_on_style_change = true;
+                modules-left   = [ "custom/publicip" ];
+                modules-center = [ "mpris" ];
+                modules-right  = [ "hyprland/window" ];
                 
                 "custom/publicip" = {
-                    exec = "curl -s ifconfig.me";
-                    interval = 60;
                     format = "{}";
-                    tooltip-format = "{ifname} @ {ipaddr}";
+                    tooltip = false;
+                    exec = pkgs.writeShellScript "publicip" ''curl -s ifconfig.me'';
+                    interval = 60;
+                };
+
+                "hyprland/window" = {
+                    format = "{initialTitle}";
+                    tooltip = false;
+                };
+
+                "mpris" = {
+                    format = "{status_icon} {artist} - {title}";
+                    # format-paused = "{statusIcon} {artist} - {title}";
+                    format-firefox = "{status_icon} {title}";
+                    tooltip = false;
+                    player-icons = {
+                        default = "";
+                        mpv = " ";
+                    };
+                    status-icons = {
+                        paused = "";
+                        playing = "";
+                        stopped = "";
+                    };
+                    interval = 2;
                 };
             };
         };
+        # style = builtins.readFile waybarcss;
+    };
+
+    xdg.configFile."waybar/style.css" = {
+        source = config.lib.file.mkOutOfStoreSymlink
+            "${config.home.homeDirectory}/nixConfig/assets/waybar.css";
     };
 
 	programs.rofi.enable = true;
-	programs.kitty.enable = true;
 
 	services.hyprpaper = {
         enable = true;
         settings = {
             splash    = false;
             preload   = [ "${wallpaper}" ];
-            wallpaper = {
-                fit_mode = "fill";
-                monitor  = "eDP-1";
-                path = "${wallpaper}";
-            };
+            wallpaper = [
+                {
+                    fit_mode = "fill";
+                    monitor  = "eDP-1";
+                    path = "${wallpaper}";
+                }
+                {
+                    fit_mode = "fill";
+                    monitor = "HDMI-1";
+                    path = "${wallpaper}";
+                }
+            ];
         };
     };
 }
