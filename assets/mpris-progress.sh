@@ -7,9 +7,7 @@ read -r position length < <(playerctl metadata --format '{{position}} {{mpris:le
 WIDTH=100
 
 if [[ -z "$position" || -z "$length" || "$length" -eq 0 ]]; then
-    # Nothing playing — empty bar
-    printf '%.0s─' $(seq 1 $WIDTH)
-    exit 0
+    exit 1
 fi
 
 # Convert microseconds to seconds
