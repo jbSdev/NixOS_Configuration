@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
 
     programs.kitty = {
@@ -34,9 +34,6 @@
 			zstyle ':omz:plugins:eza' 'dirs-first' yes
 			zstyle ':omz:plugins:eza' 'git-status' yes
 			zstyle ':omz:plugins:eza' 'header' yes
-
-			# direnv-lsp for flake-nvim work
-			eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
 
 			# DEV SHELLS
 			dev() {
@@ -79,7 +76,7 @@
 		oh-my-zsh = {
 			enable = true;
 			theme = "awesomepanda";
-			plugins = [ "git" "history" "eza" ];
+			plugins = [ "git" "history" "eza" "sudo" "colored-man-pages" "extract" "direnv" "fzf" ];
 		};
 
 		history.size = 10000;
