@@ -1,8 +1,8 @@
 { inputs, pkgs, ... }:
 {
 
-	imports = [ ./hyprland.nix ./binds.nix ./gaming.nix ./music.nix ./neovim.nix 
-		./git.nix ./pass.nix ./sops.nix ./firefox.nix ./kitty.nix
+	imports = [ ./hyprland.nix ./binds.nix ./gaming.nix ./music.nix ./neovim.nix
+		./git.nix ./pass.nix ./sops.nix ./firefox.nix ./kitty.nix ./day-night-theme.nix
 	];
 
 	modules.neovim.enable = true;
