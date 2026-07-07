@@ -14,7 +14,7 @@
         ];
         settings = {
             init.defaultBranch = "main";
-            url."git@github.com".insteadOf = "https://github.com";
+            url."ssh://git@github.com/".pushInsteadOf = "https://github.com/";
             core.sshCommand = "ssh";
         };
     };
