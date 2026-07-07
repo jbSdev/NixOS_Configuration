@@ -5,6 +5,10 @@
     min-height: 0;;
 }
 
+tooltip, tooltip * {
+    color: #ffffff;
+}
+
 window#waybar {
     /* border: 1px yellow solid; */
 }
