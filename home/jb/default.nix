@@ -21,11 +21,14 @@
 			home-manager
 			pulseaudio
 			direnv                      # Managing shell environment
+			fzf                         # Fuzzy finder for oh-my-zsh fzf plugin
 
 			# Hyprland
 			wl-clipboard
 			grim
 			slurp
+			libnotify
+			jq
 			inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
 
 			libreoffice-fresh           # LibreOffice Suite
