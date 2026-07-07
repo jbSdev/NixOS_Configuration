@@ -33,6 +33,8 @@ in
 			exec-once = [
 				"waybar"
 				"hyprpaper"
+				"mako"
+				"eww daemon"
 			];
 
 			input = {
@@ -76,6 +78,11 @@ in
                     format = "{:%H:%M}";
                     tooltip-format = "{:%A, %d %B %Y}";
                 };
+
+                "pulseaudio" = {
+                    on-click = "eww open --toggle music-popup";
+                    tooltip = false;
+                };
             };
             botBar = {
                 layer = "bottom";
@@ -93,8 +100,14 @@ in
                     return-type = "json";
                     exec = pkgs.writeShellScript "customip" ''
                         public_ip=$(curl -s ifconfig.me)
-                        local_ip=$(hostname -I)
-                        printf '{"text":"%s", "tooltip":"%s"}\n' "$public_ip" "$local_ip"
+                        iface=$(${pkgs.iproute2}/bin/ip route get 1.1.1.1 | awk '{for (i=1;i<=NF;i++) if ($i=="dev") print $(i+1); exit}')
+                        local_ip=$(${pkgs.iproute2}/bin/ip -4 addr show "$iface" | awk '/inet /{print $2}' | cut -d/ -f1)
+                        if [ -d "/sys/class/net/$iface/wireless" ]; then
+                            prefix="W"
+                        else
+                            prefix="E"
+                        fi
+                        printf '{"text":"%s", "tooltip":"%s:%s"}\n' "$public_ip" "$prefix" "$local_ip"
                     '';
                     interval = 60;
                 };
@@ -136,6 +149,34 @@ in
     xdg.configFile."waybar/style.css" = {
         source = config.lib.file.mkOutOfStoreSymlink
             "${config.home.homeDirectory}/nixConfig/assets/waybar.css";
+    };
+
+	services.mako = {
+        enable = true;
+        settings = {
+            anchor = "top-right";
+            background-color = "#000000cc";
+            text-color = "#ffffff";
+            border-color = "#222436";
+            border-size = 1;
+            border-radius = 8;
+            default-timeout = 5000;
+            font = "Terminus (TTF) 11";
+            width = 270;
+            height = 100;
+            margin = "0,10,10";
+            padding = 10;
+
+            "urgency=low" = {
+                border-color = "#e0af68";
+                format = "<b><span foreground=\"#e0af68\">WARNING: %s</span></b>\\n%b";
+            };
+
+            "urgency=critical" = {
+                border-color = "#f7768e";
+                format = "<b><span foreground=\"#f7768e\">ERROR: %s</span></b>\\n%b";
+            };
+        };
     };
 
 	programs.rofi.enable = true;
