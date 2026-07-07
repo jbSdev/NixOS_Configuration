@@ -61,6 +61,11 @@
             ", XF86AudioLowerVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
             ", XF86AudioMute,         exec, pactl set-sink-mute   @DEFAULT_SINK@ toggle"
 
+            # Media playback
+            ", XF86AudioPlay, exec, playerctl play-pause"
+            ", XF86AudioNext, exec, playerctl next"
+            ", XF86AudioPrev, exec, playerctl previous"
+
         ];
         settings.bindm = [
             "SUPER, mouse:272, movewindow"      # Move floating window on SUPER + l-click

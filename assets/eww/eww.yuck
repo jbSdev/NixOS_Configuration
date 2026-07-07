@@ -1,0 +1,35 @@
+(deflisten music :initial "{\"status\":\"Stopped\",\"title\":\"\",\"artist\":\"\",\"art\":\"\",\"progress\":0}"
+  "$HOME/nixConfig/assets/eww/music-status.sh")
+
+(defpoll mute_status :interval "1s"
+  "pactl get-sink-mute @DEFAULT_SINK@ 2>/dev/null | grep -q yes && echo muted || echo unmuted")
+
+(defwidget music-widget []
+  (overlay
+    (box :class "music-popup" :orientation "v" :space-evenly false :spacing 6
+      (box :orientation "h" :spacing 8 :space-evenly false
+        (image :class "art" :path {music.art} :image-width 46 :image-height 46)
+        (box :orientation "v" :valign "center" :halign "start" :space-evenly false
+          (label :class "title" :halign "start" :limit-width 24
+                 :text {music.title == "" ? "Nothing playing" : music.title})
+          (label :class "artist" :halign "start" :limit-width 24 :text {music.artist})))
+      (progress :class "progress" :value {music.progress} :orientation "horizontal" :hexpand true)
+      (box :class "controls" :orientation "h" :halign "center" :spacing 28 :space-evenly false
+        (button :class "ctrl-btn" :onclick "playerctl previous" "<<")
+        (button :class "ctrl-btn play-btn"
+                :onclick "playerctl play-pause"
+                :width 46
+                {music.status == "Playing" ? "||" : ">"})
+        (button :class "ctrl-btn" :onclick "playerctl next" ">>")))
+    (label :class "mute-icon" :halign "end" :valign "start"
+           :visible {mute_status == "muted"} :text "󰝟")))
+
+(defwindow music-popup
+  :monitor 0
+  :geometry (geometry :x "10px"
+                      :y "2px"
+                      :width "226px"
+                      :height "104px"
+                      :anchor "top right")
+  :stacking "overlay"
+  (music-widget))

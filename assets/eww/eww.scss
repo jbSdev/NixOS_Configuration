@@ -1,0 +1,68 @@
+* {
+    all: unset;
+    font-family: "Terminus (TTF)";
+    font-size: 12px;
+    color: #ffffff;
+}
+
+window {
+    background-color: transparent;
+}
+
+.music-popup {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #222436;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.music-popup .art {
+    border-radius: 4px;
+}
+
+.music-popup .title {
+    font-size: 12px;
+}
+
+.music-popup .artist {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.music-popup .progress {
+    min-height: 4px;
+}
+
+.music-popup .progress trough {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    min-height: 4px;
+}
+
+.music-popup .progress progress {
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+.music-popup .controls {
+    margin-top: 4px;
+}
+
+.music-popup .ctrl-btn {
+    font-size: 18px;
+    padding: 4px 10px;
+}
+
+.music-popup .ctrl-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.music-popup .play-btn {
+    font-size: 20px;
+}
+
+.mute-icon {
+    font-size: 13px;
+    color: #f7768e;
+    margin: 6px 10px 0 0;
+}
