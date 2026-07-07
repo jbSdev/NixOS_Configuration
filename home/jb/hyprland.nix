@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 let
-    wallpaper = ../../assets/wallpaper.jpg;
-    # waybarcss = ../../assets/waybar.css;
+    wallpaperDay   = "${config.home.homeDirectory}/nixConfig/assets/wallpaper_day.jpg";
+    wallpaperNight = "${config.home.homeDirectory}/nixConfig/assets/wallpaper_night.jpg";
     barHeight = 30;
 in
 {
@@ -35,6 +35,7 @@ in
 				"hyprpaper"
 				"mako"
 				"eww daemon"
+				"${config.home.homeDirectory}/nixConfig/assets/day-night-switch.sh auto"
 			];
 
 			input = {
@@ -148,7 +149,7 @@ in
 
     xdg.configFile."waybar/style.css" = {
         source = config.lib.file.mkOutOfStoreSymlink
-            "${config.home.homeDirectory}/nixConfig/assets/waybar.css";
+            "${config.home.homeDirectory}/nixConfig/assets/waybar-active.css";
     };
 
 	services.mako = {
@@ -185,17 +186,17 @@ in
         enable = true;
         settings = {
             splash    = false;
-            preload   = [ "${wallpaper}" ];
+            preload   = [ wallpaperDay wallpaperNight ];
             wallpaper = [
                 {
                     fit_mode = "fill";
                     monitor  = "eDP-1";
-                    path = "${wallpaper}";
+                    path = wallpaperNight;
                 }
                 {
                     fit_mode = "fill";
                     monitor = "HDMI-1";
-                    path = "${wallpaper}";
+                    path = wallpaperNight;
                 }
             ];
         };
