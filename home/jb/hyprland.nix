@@ -84,6 +84,15 @@ in
                     on-click = "eww open --toggle music-popup";
                     tooltip = false;
                 };
+
+                # Pin to the laptop battery explicitly; without `bat`, waybar
+                # auto-detects and inotify-watches every /sys/class/power_supply/*
+                # entry, including the DualSense's Bluetooth battery report. That
+                # entry disappears on controller disconnect, and waybar's watch
+                # teardown throws an uncaught exception that crashes the whole bar.
+                "battery" = {
+                    bat = "BAT0";
+                };
             };
             botBar = {
                 layer = "bottom";
