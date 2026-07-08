@@ -3,6 +3,7 @@
 
 	imports = [ ./hyprland.nix ./binds.nix ./gaming.nix ./music.nix ./neovim.nix
 		./git.nix ./pass.nix ./sops.nix ./firefox.nix ./kitty.nix ./eww.nix ./hyprsunset.nix ./day-night-theme.nix
+		./bluetooth-notify.nix
 	];
 
 	modules.neovim.enable = true;
