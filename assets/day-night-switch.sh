@@ -20,7 +20,16 @@ cp "$ASSETS_DIR/waybar-$mode.css" "$ASSETS_DIR/waybar-active.css"
 
 # reload_on_style_change's inotify watch doesn't reliably fire through the
 # mkOutOfStoreSymlink -> nix-store-symlink -> live-file chain; force it.
-pkill -SIGUSR2 waybar || true
+#
+# But at login this races waybar's own exec-once entry: SIGUSR2's default
+# disposition is to terminate, and waybar doesn't install its own handler
+# until partway through startup. Signaling a still-starting waybar kills it
+# silently instead of reloading it. Skip anything younger than a couple
+# seconds -- it'll pick up the CSS we just wrote on its own startup read.
+waybar_pid=$(pgrep waybar | head -1 || true)
+if [[ -n "$waybar_pid" ]] && (( $(ps -o etimes= -p "$waybar_pid" 2>/dev/null || echo 0) > 2 )); then
+    kill -SIGUSR2 "$waybar_pid" || true
+fi
 
 wallpaper="$ASSETS_DIR/wallpaper_$mode.jpg"
 
