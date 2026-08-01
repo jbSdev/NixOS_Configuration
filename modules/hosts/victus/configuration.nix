@@ -1,4 +1,4 @@
-{ self, inputs, ...}: {
+{ self, ...}: {
 
 	flake.nixosModules.victusConfiguration = { pkgs, lib, ... }: {
 		imports = [
@@ -25,7 +25,8 @@
 		boot.loader.systemd-boot.enable = true;
 		boot.loader.efi.canTouchEfiVariables = true;
 
-		time.timeZone = "Europe/Warsaw";
+		# time.timeZone = "Europe/Warsaw";        # Warsaw
+        time.timeZone = "America/Chicago";      # Hays
 		i18n.defaultLocale = "en_US.UTF-8";
 		i18n.extraLocaleSettings = {
 			LC_ADDRESS = "pl_PL.UTF-8";
@@ -43,7 +44,7 @@
 		users.defaultUserShell = pkgs.zsh;
 
 		users.users.jb = {
-			extraGroups = [ "networkmanager" "wheel" ];
+			extraGroups = [ "networkmanager" "wheel" "dialout" ];
 			uid = 1000;
 			isNormalUser = true;
 		};

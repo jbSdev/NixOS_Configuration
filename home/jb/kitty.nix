@@ -59,6 +59,12 @@
 					"powershell" )
 						nix develop ~/nixConfig/.#powershell
 						;;
+                    "mobile" )
+                        nix develop ~/nixConfig/.#mobile
+                        ;;
+                    "arduino" )
+                        nix develop ~/nixConfig/.#arduino
+                        ;;
 					* )
 						echo "No such dev shell! Available:"
 						echo " - cpp11"
@@ -68,6 +74,8 @@
 						echo " - rust"
 						echo " - go"
 						echo " - powershell"
+                        echo " - mobile (Android & iOS)"
+                        echo " - arduino (Arduino & ESP32)"
 						;;
 					esac
 			}

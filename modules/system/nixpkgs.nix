@@ -13,6 +13,7 @@
 				"winbox"
 				"obsidian"
 				"claude-code"
+                "android-sdk-platform-tools"
 			];
 
 		nixpkgs.config.permittedInsecurePackages = [

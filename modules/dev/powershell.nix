@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 	perSystem = { pkgs, ... }: {
 		devShells.powershell = pkgs.mkShell {
 			name = "powershell";
