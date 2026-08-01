@@ -5,6 +5,7 @@
             name = "arduino";
             packages = with pkgs; [
                 arduino-cli
+                arduino-language-server
                 platformio
                 esptool
                 avrdude
