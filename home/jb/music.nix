@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
 
     imports = [ ./spotify-themes.nix ];
@@ -12,4 +12,8 @@
     };
 
     services.playerctld.enable = true;      # Getting most recent active player for mpris (waybar music module)
+
+    home.packages = with pkgs; [
+        mixxx
+    ];
 }

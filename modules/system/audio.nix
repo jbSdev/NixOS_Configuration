@@ -13,6 +13,8 @@
             pulse.enable = true;
         };
 
+        users.users.jb.extraGroups = [ "audio" ];
+
     };
 
 }
