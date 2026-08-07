@@ -29,11 +29,11 @@
                 kernelParams = [
                     "intel_iommu=on"
                     "iommu=pt"
-                    "vfio-pci.ids=${lib.concatStringsSep "," config.modules.vfio.pciId}"
+                    "vfio-pci.ids=${lib.concatStringsSep "," config.modules.vfio.pciIds}"
                 ];
             };
 
-            virtualisation.libvirtd.qemu.ovmf.enable = true;
+            # virtualisation.libvirtd.qemu.ovmf.enable = true;
         };
     };
 

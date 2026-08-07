@@ -17,6 +17,8 @@
             self.nixosModules.nixBrightness
             self.nixosModules.victusInput
             self.nixosModules.nixFonts
+            self.nixosModules.nixVM
+            self.nixosModules.GPUPassthrough
 		];
 
 		modules.hyprland.enable = true;
@@ -52,6 +54,14 @@
         fonts.packages = with pkgs; [
             font-awesome
         ];
+
+        modules.vfio = {
+            enable = true;
+            pciIds = [
+                "10de:25ac" # RTX
+                "10de:2291" # HDMI/DP Audio
+            ];
+        };
 
 		system.stateVersion = "26.05";
 	};
