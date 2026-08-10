@@ -1,13 +1,16 @@
 { self, inputs, ... }: {
 
-    flake.nixosModules.nixVM = { pkgs, ... }: {
+    flake.nixosModules.nixVM = { pkgs, lib, ... }: {
 
         programs.virt-manager.enable = true;
 
         virtualisation = {
-            libvirtd.enable = true;
+            libvirtd = {
+                enable = true;
+                qemu.runAsRoot = lib.mkDefault false;
+            };
             # libvirtd.qemu.runAsRoot = true;
-            spiceUSBRedirection.enable = true;
+            spiceUSBRedirection.enable = lib.mkDefault false;
         };
 
         # networking.firewall.trustedInterfaces = [ "virbr0" ];
