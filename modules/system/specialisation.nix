@@ -14,6 +14,16 @@
 					prime.sync.enable = lib.mkForce true;
 				};
 			};
+
+            passthrough.configuration = {
+                system.nixos.tags = [ "passthrough" ];
+                hardware.nvidia = {
+                    prime.offload.enable = lib.mkForce false;
+                    prime.offload.enableOffloadCmd = lib.mkForce false;
+                    prime.sync.enable = lib.mkForce true;
+                };
+                modules.vfio.enable = lib.mkForce true;
+            };
 		};
 
 	};

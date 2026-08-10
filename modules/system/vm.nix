@@ -16,14 +16,6 @@
 
         boot.kernelModules = [
             "kvm-intel"
-            "vfio"
-            "vfio_pci"
-            "vfio_iommu_type1"
-        ];
-
-        # IOMMU options
-        boot.kernelParams = [
-            "intel_iommu=on"
         ];
 
     };

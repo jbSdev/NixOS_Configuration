@@ -56,7 +56,7 @@
         ];
 
         modules.vfio = {
-            enable = true;
+            enable = false;
             pciIds = [
                 "10de:25ac" # RTX
                 "10de:2291" # HDMI/DP Audio
