@@ -23,6 +23,8 @@
                     prime.sync.enable = lib.mkForce true;
                 };
                 modules.vfio.enable = lib.mkForce true;
+                virtualisation.libvirtd.qemu.runAsRoot = true;
+                networking.firewall.trustedInterfaces = [ "virbr0" ];
             };
 		};
 
