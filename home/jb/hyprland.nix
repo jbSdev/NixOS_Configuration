@@ -207,6 +207,11 @@ in
                     monitor = "HDMI-1";
                     path = wallpaperNight;
                 }
+                {
+                    fit_mode = "fill";
+                    monitor = "DP-1";
+                    path = wallpaperNight;
+                }
             ];
         };
     };
