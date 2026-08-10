@@ -12,7 +12,10 @@ in
 		configType = "hyprlang";
 
 		settings = {
-			monitor = [ ",preferred,auto,1" ];
+			monitor = [
+                "eDP-1, 1920x1080@144, 0x0, 1"
+                "DP-1,  1920x1080@120, 1920x-420, 1, transform, 1"
+            ];
 
 			env = [
 				"LIBVA_DRIVER_TYPE,nvidia"
