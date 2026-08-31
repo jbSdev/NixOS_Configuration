@@ -32,17 +32,18 @@
 			jq
 			inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-			libreoffice-fresh           # LibreOffice Suite
+			libreoffice-stable          # LibreOffice Suite
 			winbox4                     # MicroTik Router Setup
 			cloudflared                 # Cloudflare Access
 			obsidian                    # Obsidian Notes
+            nchat                       # WhatsApp terminal client
 	];
 
 	services.gpg-agent = {
 		enable = true;
 		enableSshSupport = true;
 		sshKeys = [ "98BAF6BE30F5B285D677851110E4D0E6F1236A87" ];
-		pinentry.package = pkgs.pinentry-gtk2;
+		pinentry.package = pkgs.pinentry-gnome3;
 	};
 
 	programs.ssh = {
