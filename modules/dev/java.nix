@@ -3,7 +3,7 @@
     perSystem = { pkgs, ... }: {
         devShells.java = pkgs.mkShell {
             name = "java";
-            packages = with pkgs; [ jdk maven gradle ant gdb ];
+            packages = with pkgs; [ jdk maven gradle ant gdb java-language-server ];
             shellHook = ''
                 export JAVA_HOME="${pkgs.jdk}"
                 echo "Java development shell loaded"

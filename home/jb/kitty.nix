@@ -65,6 +65,9 @@
                     "arduino" )
                         nix develop ~/nixConfig/.#arduino
                         ;;
+                    "java" )
+                        nix develop ~/nixConfig/.#java
+                        ;;
 					* )
 						echo "No such dev shell! Available:"
 						echo " - cpp11"
