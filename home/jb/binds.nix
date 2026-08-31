@@ -7,6 +7,7 @@
             "SUPER SHIFT, Q, killactive"
             "SUPER, Escape, exec, hyprctl dispath dpms off && hyprctl dispatch dpms on"
             "SUPER, D, exec, rofi -show drun"
+            "SUPER SHIFT, X, exec, hyprlock"
 
             "SUPER, 1, workspace, 1"
             "SUPER, 2, workspace, 2"
@@ -65,6 +66,17 @@
             ", XF86AudioPlay, exec, playerctl play-pause"
             ", XF86AudioNext, exec, playerctl next"
             ", XF86AudioPrev, exec, playerctl previous"
+
+            # PrintScreen
+
+                # Full screen -> save to ~/Pictures/Screenshots
+            "$mod, PRINT, exec, grim ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
+                # Select region -> save to ~/Pictures/Screenshots
+            "$mod SHIFT, S, exec, grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png"
+                # Full screen -> clipboard
+            ", PRINT, exec, grim - | wl-copy"
+                # Select region -> clipboard
+            "$mod CTRL, S, exec, grim -g \"$(slurp)\" - | wl-copy"
 
         ];
         settings.bindm = [

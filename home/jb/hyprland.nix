@@ -218,4 +218,54 @@ in
             ];
         };
     };
+
+    programs.hyprlock = {
+        enable = true;
+        settings = {
+            general = {
+                hide_cursor = true;
+                ignore_empty_input = true;
+            };
+
+            background = [
+                {
+                    monitor = "";
+                    path = "/home/jb/nixConfig/assets/lockscreen.jpg";
+                    blur_passes = 3;
+                    blur_size = 8;
+                }
+            ];
+
+            input-field = [
+                {
+                    size = "200, 50";
+                    position = "20, 20";
+                    halign = "left";
+                    valign = "bottom";
+                    outline_thickness = 2;
+                    dots_size = 0.15;
+                    monitor = "eDP-1";
+                    dots_center = true;
+                    fade_on_empty = false;
+                    rounding = 0;
+                    placeholder_text = "<i>Alohomora...</i>";
+                    shadow_passes = 2;
+                }
+            ];
+
+            label = [
+                {
+                    monitor = "";
+                    text = "$TIME";
+                    text_align = "center";
+                    halign = "center";
+                    valign = "top";
+                    position = "0, -20";
+                    color = "rgb(0,0,0)";
+                }
+            ];
+        };
+    };
+
+    home.file."Pictures/Screenshots/.keep".text = "";
 }
