@@ -58,6 +58,10 @@ in
 				rounding = 8;
 				blur.enabled = true;
 			};
+
+            misc = {
+                middle_click_paste = false;
+            }
 		};
 	};
 
