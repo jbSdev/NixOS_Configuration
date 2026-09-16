@@ -30,6 +30,7 @@
 
 		initContent = ''
 			lsf() { eza -ahl | grep $1}
+            pdf() { zathura $1 }
 
 			zstyle ':omz:plugins:eza' 'dirs-first' yes
 			zstyle ':omz:plugins:eza' 'git-status' yes

@@ -37,6 +37,7 @@
 			cloudflared                 # Cloudflare Access
 			obsidian                    # Obsidian Notes
             nchat                       # WhatsApp terminal client
+            zathura                     # PDF Viewer
 	];
 
 	services.gpg-agent = {
