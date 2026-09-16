@@ -42,7 +42,7 @@ in
 			];
 
 			input = {
-				kb_layout = "us";
+				kb_layout = "pl";
 				follow_mouse = 1;
 				touchpad.natural_scroll = true;
 			};
@@ -61,7 +61,7 @@ in
 
             misc = {
                 middle_click_paste = false;
-            }
+            };
 		};
 	};
 

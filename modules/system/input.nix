@@ -9,6 +9,7 @@
                 naturalScrolling = true;        # invert scroll
                 tapping = true;                 # tap to click
                 scrollMethod = "twofinger";
+                disableWhileTyping = false;
             };
         };
 
