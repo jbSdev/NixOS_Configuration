@@ -16,7 +16,16 @@ if [[ "$mode" == "auto" ]]; then
     fi
 fi
 
-cp "$ASSETS_DIR/waybar-$mode.css" "$ASSETS_DIR/waybar-active.css"
+# theme-day.service and theme-night.service both fire as Persistent catch-up
+# jobs at login (whenever the laptop was off at 07:30/20:00), racing each
+# other. `cp` truncates-and-writes the destination in place, so two
+# concurrent invocations interleave and can leave a torn, invalid CSS file.
+# Write to a private temp file and rename it into place instead -- rename(2)
+# is atomic, so waybar (and the other racing switch) only ever sees a
+# complete old or new file, never a partial one.
+tmp="$(mktemp "$ASSETS_DIR/waybar-active.css.XXXXXX")"
+cp "$ASSETS_DIR/waybar-$mode.css" "$tmp"
+mv -f "$tmp" "$ASSETS_DIR/waybar-active.css"
 
 # reload_on_style_change's inotify watch doesn't reliably fire through the
 # mkOutOfStoreSymlink -> nix-store-symlink -> live-file chain; force it.
