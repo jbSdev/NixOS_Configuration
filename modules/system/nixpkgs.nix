@@ -14,6 +14,7 @@
 				"obsidian"
 				"claude-code"
                 "android-sdk-platform-tools"
+                "bambu-studio"
 			];
 
 		nixpkgs.config.permittedInsecurePackages = [
