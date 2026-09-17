@@ -19,6 +19,8 @@
                 fira-code
                 fira-code-symbols
 
+                carlito
+
                 terminus_font_ttf
             ];
 
