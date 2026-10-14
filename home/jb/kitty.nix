@@ -7,6 +7,9 @@
             name = "Terminus (TTF)";
             size = 12;
         };
+        # Otherwise kitty restores the last window's maximized state from
+        # ~/.cache/kitty/main.json and asks Hyprland to maximize after mapping.
+        settings.remember_window_size = "no";
     };
 
 	programs.zsh = {
