@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
     wallpaperDay   = "${config.home.homeDirectory}/nixConfig/assets/wallpaper_day.jpg";
     wallpaperNight = "${config.home.homeDirectory}/nixConfig/assets/wallpaper_night.jpg";
@@ -9,59 +9,70 @@ in
 	wayland.windowManager.hyprland = {
 		enable = true;
 		xwayland.enable = true;
-		configType = "hyprlang";
+		# hyprland.conf (hyprlang) support is removed in Hyprland 0.57;
+		# this generates ~/.config/hypr/hyprland.lua instead.
+		configType = "lua";
 
+		# Each attribute renders as hl.<name>(...); `_var` renders a Lua local.
 		settings = {
 			monitor = [
-                "eDP-1, 1920x1080@144, 0x0, 1"
-                "DP-1,  1920x1080@120, 1920x-420, 1, transform, 1"
+                { output = "eDP-1"; mode = "1920x1080@144"; position = "0x0";       scale = 1; }
+                { output = "DP-1";  mode = "1920x1080@120"; position = "1920x-420"; scale = 1; transform = 1; }
             ];
 
-			env = [
-				"LIBVA_DRIVER_TYPE,nvidia"
-				"XDG_SESSION_TYPE,wayland"
-				"GBM_BACKEND,nvidia-drm"
-				"__GLX_VENDOR_LIBRARY_NAME,nvidia"
-				"WLR_NO_HARDWARE_CURSORS,1"
+			env = map (e: { _args = e; }) [
+				[ "LIBVA_DRIVER_TYPE" "nvidia" ]
+				[ "XDG_SESSION_TYPE" "wayland" ]
+				[ "GBM_BACKEND" "nvidia-drm" ]
+				[ "__GLX_VENDOR_LIBRARY_NAME" "nvidia" ]
+				[ "WLR_NO_HARDWARE_CURSORS" "1" ]
 
                 # Cursor
-                "HYPRCURSOR_THEME,rose-pine-hyprcursor"
-                "HYPRCURSOR_SIZE,24"
+                [ "HYPRCURSOR_THEME" "rose-pine-hyprcursor" ]
+                [ "HYPRCURSOR_SIZE" "24" ]
 			];
 
-			"$terminal" = "kitty";
-			"$menu" = "rofi -show drun";
-			"$mod" = "SUPER";
+			terminal._var = "kitty";
+			menu._var = "rofi -show drun";
+			mod._var = "SUPER";
 
-			exec-once = [
-				"waybar"
-				"hyprpaper"
-				"mako"
-				"eww daemon"
-				"${config.home.homeDirectory}/nixConfig/assets/day-night-switch.sh auto"
+			# exec-once
+			on._args = [
+				"hyprland.start"
+				(lib.generators.mkLuaInline ("function()\n"
+					+ lib.concatMapStrings (cmd: "  hl.exec_cmd(${lib.generators.toLua { } cmd})\n") [
+						"waybar"
+						"hyprpaper"
+						"mako"
+						"eww daemon"
+						"${config.home.homeDirectory}/nixConfig/assets/day-night-switch.sh auto"
+					]
+					+ "end"))
 			];
 
-			input = {
-				kb_layout = "pl";
-				follow_mouse = 1;
-				touchpad.natural_scroll = true;
-			};
+			config = {
+				input = {
+					kb_layout = "pl";
+					follow_mouse = 1;
+					touchpad.natural_scroll = true;
+				};
 
-			general = {
-				gaps_in = 5;
-				gaps_out = "2,10,2,10";
-				border_size = 1;
-				layout = "dwindle";
-			};
+				general = {
+					gaps_in = 5;
+					gaps_out = { top = 2; right = 10; bottom = 2; left = 10; };
+					border_size = 1;
+					layout = "dwindle";
+				};
 
-			decoration = {
-				rounding = 8;
-				blur.enabled = true;
-			};
+				decoration = {
+					rounding = 8;
+					blur.enabled = true;
+				};
 
-            misc = {
-                middle_click_paste = false;
-            };
+				misc = {
+					middle_click_paste = false;
+				};
+			};
 		};
 	};
 
