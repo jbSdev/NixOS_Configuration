@@ -5,7 +5,7 @@
         imports = [ inputs.sops-nix.nixosModules.sops ];
 	
 		# SSH
-		services.openssh.enable = true;
+		# services.openssh.enable = true;
 		# services.openssh = {
 		# 	enable = true;
 		# 	ports = [ 12023 ];
