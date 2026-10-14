@@ -28,6 +28,12 @@
             url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        immurok-nix = {
+            # Switch to github:<owner>/immurok-nix or the Codeberg URL once published.
+            url = "git+file:///home/jb/Programming/immoruk";
+            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.home-manager.follows = "home-manager";
+        };
 	};
 
 	outputs = inputs: inputs.flake-parts.lib.mkFlake 

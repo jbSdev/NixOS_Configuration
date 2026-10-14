@@ -19,6 +19,7 @@
             self.nixosModules.nixFonts
             self.nixosModules.nixVM
             self.nixosModules.GPUPassthrough
+            self.nixosModules.nixImmurok
 		];
 
 		modules.hyprland.enable = true;
