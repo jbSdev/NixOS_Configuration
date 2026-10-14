@@ -17,7 +17,8 @@
         };
         sops-nix.url = "github:mic92/sops-nix";
         nixos-neovim = {
-            url = "github:jbSdev/NixOS_neovim/Nix-managed";     # My own Neovim config
+            # url = "github:jbSdev/NixOS_neovim/Nix-managed";     # My own Neovim config
+            url = "git+https://codeberg.org/jbSdev/NixOS_neovim.git?ref=main";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nur = {
