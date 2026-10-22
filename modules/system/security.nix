@@ -33,6 +33,7 @@
         environment.systemPackages = with pkgs; [
             sops
             age
+            cryptsetup
         ];
 
         security.pam.services.hyprlock = {};
