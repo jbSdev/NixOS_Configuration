@@ -103,6 +103,29 @@
         "type": "github"
       }
     },
+    "immurok-nix": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791835314,
+        "narHash": "sha256-+4X8kqa4tG3VD3Rw/GPYSKAj+fYqKSn7qleVSfpCpHU=",
+        "ref": "refs/heads/main",
+        "rev": "a349750047246b227df82776ea87279e952d6d4d",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:///home/jb/Programming/immoruk"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/jb/Programming/immoruk"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1788467110,
@@ -228,6 +251,7 @@
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "immurok-nix": "immurok-nix",
         "import-tree": "import-tree",
         "nixos-neovim": "nixos-neovim",
         "nixpkgs": "nixpkgs",
